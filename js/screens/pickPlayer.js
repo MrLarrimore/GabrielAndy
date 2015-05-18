@@ -4,64 +4,136 @@ game.PickPlayer = me.ScreenObject.extend({
      */
     // player selection screen
     onResetEvent: function() {
+        me.audio.pause("title-music");
+        me.audio.play("select-char", true, null, .10);
+        me.audio.play("select-music", true, null, .08);
+
         //sets background image
         me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('select-screen')), -10); // TODO
+        me.game.world.addChild(new me.Sprite(75, 20, me.loader.getImage('choos-char')), -9); // TODO
         //shows icon images for charecter selectin
-        me.game.world.addChild(new me.Sprite(200, 300, me.loader.getImage('orcIcon')), -9); // TODO
-        me.game.world.addChild(new me.Sprite(700, 300, me.loader.getImage('elfIcon')), -9); // TODO
-        me.game.world.addChild(new me.Sprite(450, 300, me.loader.getImage('wizardIcon')), -9); // TODO
+        
+
+
+
         //binds keys
-        me.input.bindKey(me.input.KEY.F1, "F1");
-        me.input.bindKey(me.input.KEY.F2, "F2");
-        me.input.bindKey(me.input.KEY.F3, "F3");
+        
+        //makes buttons visiible
+        document.getElementById("input").style.visibility = "visible";
+        document.getElementById("register").style.visibility = "visible";
+//unbinds all the keys
+        me.input.unbindKey(me.input.KEY.F1);
+        me.input.unbindKey(me.input.KEY.F2);
+        me.input.unbindKey(me.input.KEY.F3);
+        me.input.unbindKey(me.input.KEY.F4);
+        me.input.unbindKey(me.input.KEY.F5);
+        me.input.unbindKey(me.input.KEY.F6);
+        me.input.unbindKey(me.input.KEY.RIGHT);
+        me.input.unbindKey(me.input.KEY.LEFT);
+        me.input.unbindKey(me.input.KEY.PAGE_UP);
+        me.input.unbindKey(me.input.KEY.ALT);
+        me.input.unbindKey(me.input.KEY.DOWN);
+        me.input.unbindKey(me.input.KEY.PAGE_DOWN);
+        me.input.unbindKey(me.input.KEY.UP);
+        me.input.unbindKey(me.input.KEY.ALT);
+        me.input.unbindKey(me.input.KEY.W);
+        me.input.unbindKey(me.input.KEY.A);
+        me.input.unbindKey(me.input.KEY.S);
+        me.input.unbindKey(me.input.KEY.D);
+        me.input.unbindKey(me.input.KEY.CTRL);
+        me.input.unbindKey(me.input.KEY.Q);
+        me.input.unbindKey(me.input.KEY.SHIFT);
+        me.input.unbindKey(me.input.KEY.F12);
+        me.input.unbindKey(me.input.KEY.E);
+        me.input.unbindKey(me.input.KEY.U);
+        me.input.unbindKey(me.input.KEY.Z);
+        me.input.unbindKey(me.input.KEY.X);
+        me.input.unbindKey(me.input.KEY.C);
+
         //adds object that is text
         me.game.world.addChild(new (me.Renderable.extend({
             init: function() {
                 //text settings
-                this._super(me.Renderable, 'init', [100, 10, 300, 50]);
+                this._super(me.Renderable, 'init', [200, 300, 58, 63]);
                 this.font = new me.Font("Arial", 55, "black");
-
-
+                me.input.registerPointerEvent("pointerdown", this, this.newGame.bind(this), true);
+                game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('orcIcon'));
             },
             draw: function(renderer) {
-                //drawws text
-                this.font.draw(renderer.getContext(), "F1-F3 to chose charecter", this.pos.x, this.pos.y);
+
+this.font.draw(renderer.getContext(), "Player 1", 125,400);
+            },
+            update: function(dt) {
+                return true;
+            },
+            newGame: function() {
+
+                me.input.releasePointerEvent('pointerdown', this);
+                me.game.world.addChild(new me.Sprite(125, 450, me.loader.getImage('orcIcon')), -7); // TODO
+
+            }
+        })));
+
+        me.game.world.addChild(new (me.Renderable.extend({
+            init: function() {
+                //text settings
+                this._super(me.Renderable, 'init', [700, 300, 58, 63]);
+                this.font = new me.Font("Arial", 55, "black");
+                me.input.registerPointerEvent("pointerdown", this, this.newGame.bind(this), true);
+                me.game.world.addChild(new me.Sprite(700, 300, me.loader.getImage('elfIcon')), -9); // TODO
+            },
+            draw: function(renderer) {
+
 
             },
             update: function(dt) {
                 return true;
+            },
+            newGame: function() {
+
+                me.input.releasePointerEvent('pointerdown', this);
+                me.game.world.addChild(new me.Sprite(125, 450, me.loader.getImage('elfIcon')), -7); // TODO
+
             }
         })));
-//handler to check if keys are pressed
-        this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge) {
-            if (action === "F1") {
-                //orc
-                game.data.select = "player";
-                game.data.playerHealth = 8;
-                game.data.playerAttack = 2;
-                game.data.playerAttackTimer = 1200;
-                game.data.playerMoveSpeed = 3;
-                me.state.change(me.state.SPENDEXP);
-            } else if (action === "F2") {
-                //wizard
-                game.data.playerHealth = 6;
-                game.data.playerAttack = 1;
-                game.data.playerAttackTimer = 600;
-                game.data.playerMoveSpeed = 5;
-                game.data.select = "player2";
 
-                me.state.change(me.state.SPENDEXP);
-            } else if (action === "F3") {
-                //elf
-                game.data.playerHealth = 4;
-                game.data.playerAttack = 1;
-                game.data.playerAttackTimer = 400;
-                game.data.playerMoveSpeed = 7;
-                game.data.select = "player3";
-                me.state.change(me.state.SPENDEXP);
+        me.game.world.addChild(new (me.Renderable.extend({
+            init: function() {
+                //text settings
+                this._super(me.Renderable, 'init', [450, 300, 58, 63]);
+                this.font = new me.Font("Arial", 55, "black");
+                me.input.registerPointerEvent("pointerdown", this, this.newGame.bind(this), true);
+
+                var MySprite = me.Sprite.extend({
+                    init: function() {
+                        this._super(me.Sprite, "init", [450, 300, me.loader.getImage('wizardIcon')]);
+                        this.z = 2;
+                    }
+                });
+                me.game.world.addChild(new MySprite());
+            },
+            draw: function(renderer) {
+
+
+            },
+            update: function(dt) {
+                return true;
+            },
+            newGame: function() {
+
+                me.input.releasePointerEvent('pointerdown', this);
+
+                var MySprite = me.Sprite.extend({
+                    init: function() {
+                        this._super(me.Sprite, "init", [125, 450, me.loader.getImage('wizardIcon')]);
+                        this.z = 2;
+                    }
+                });
+                me.game.world.addChild(new MySprite());
 
             }
-        });
+        })));
+
 
 
 
@@ -71,11 +143,10 @@ game.PickPlayer = me.ScreenObject.extend({
      */
     onDestroyEvent: function() {
         //unbinds everything
-        me.input.unbindKey(me.input.KEY.F1, "F1");
-        me.input.unbindKey(me.input.KEY.F2, "F2");
-        me.input.unbindKey(me.input.KEY.F3, "F3");
-
-        me.event.unsubscribe(this.handler);
+       
+        //hides buttons again
+        document.getElementById("input").style.visibility = "hidden";
+        document.getElementById("register").style.visibility = "hidden";
     }
 });
 

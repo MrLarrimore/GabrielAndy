@@ -34,7 +34,7 @@ body {
 
 #input{
     display: block;
-    text-align: center;
+    padding-left: 175px;
     visibility: hidden;
 }
 

@@ -16,7 +16,7 @@ game.resources = [
     {name: "tower", type: "image", src: "data/img/tower_round.svg.png"},
    
   
-    {name: "title-screen", type: "image", src: "data/img/title.jpg"},
+    {name: "title-screen", type: "image", src: "data/img/title.png"},
     {name: "castletile", type: "image", src: "data/img/castletile.png"},
     {name: "castle_tile2", type: "image", src: "data/img/castle_tile2.png"},
     {name: "castle_tileset3", type: "image", src: "data/img/castle_tileset3.png"},
@@ -32,6 +32,8 @@ game.resources = [
     {name: "elfIcon", type: "image", src: "data/img/darkelfIcon.png"},
     {name: "orcIcon", type: "image", src: "data/img/orcSpearIcon.png"},
     {name: "wizardIcon", type: "image", src: "data/img/wizardIcon.png"},
+    {name: "start", type: "image", src: "data/img/start.png"},
+    {name: "choos-char", type: "image", src: "data/img/choos-char.png"},
     /* Atlases 
      * @example
      * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
@@ -50,11 +52,12 @@ game.resources = [
      * @example
      * {name: "example_bgm", type: "audio", src: "data/bgm/"},
      */
-    {name: "eminem", type: "audio", src: "data/bgm/"},
-    {name: "turndown", type: "audio", src: "data/bgm/"}
+    {name: "title-music", type: "audio", src: "data/bgm/"},
+    {name: "select-music", type: "audio", src: "data/bgm/"},
 
     /* Sound effects. 
      * @example
      * {name: "example_sfx", type: "audio", src: "data/sfx/"}
      */
+    {name: "select-char", type: "audio", src: "data/sfx/"}
 ];

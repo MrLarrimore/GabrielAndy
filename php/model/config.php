@@ -8,7 +8,7 @@ session_regenerate_id(true);
 $host = "localhost";
 $username = "root";
 $password = "root";
-$database = "awesomenauts_db";
+$database = "ssb_db";
 
 
 //if there isnt a connection then make one

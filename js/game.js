@@ -24,6 +24,7 @@ var game = {
         exp4: 0,
         win: "",
         pausePos: "",
+        orcIcon:"",
         buyscreen: "",
         pausescreen: "",
         pausetext: "",

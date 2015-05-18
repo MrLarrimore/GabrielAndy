@@ -57,7 +57,7 @@ game.PickPlayer = me.ScreenObject.extend({
                 this._super(me.Renderable, 'init', [200, 300, 58, 63]);
                 this.font = new me.Font("Arial", 55, "black");
                 me.input.registerPointerEvent("pointerdown", this, this.newGame.bind(this), true);
-                game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('orcIcon'));
+                game.data.orcIcon = new me.Sprite(200, 300, me.loader.getImage('orcIcon'));
             },
             draw: function(renderer) {
 
@@ -111,6 +111,7 @@ this.font.draw(renderer.getContext(), "Player 1", 125,400);
                     }
                 });
                 me.game.world.addChild(new MySprite());
+                me.game.world.removeChild(game.data.orcIcon);
             },
             draw: function(renderer) {
 
